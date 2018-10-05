@@ -44,16 +44,16 @@ type Supplier struct {
 }
 
 func (s *Supplier) Run() error {
-	s.Log.BeginStep("Supplying mysql")
+	s.Log.BeginStep("Supplying css")
 	fmt.Println("Hi I am the supplier and I am being run!")
 
-	dep := libbuildpack.Dependency{Name: "mysql", Version: "0.0.1"}
+	dep := libbuildpack.Dependency{Name: "css", Version: "0.0.1"}
 	if err := s.Installer.InstallDependency(dep, s.Stager.DepDir()); err != nil {
 		return err
 	}
 
 	// /tmp/deps/0/hwc/hwc.exe
-	if err := s.Stager.AddBinDependencyLink(filepath.Join(s.Stager.DepDir(), "MySql.Data.dll"), "MySql.Data.dll"); err != nil {
+	if err := s.Stager.AddBinDependencyLink(filepath.Join(s.Stager.DepDir(), "override.css"), "override.css"); err != nil {
 		fmt.Printf("SYMLINK ERROR: %s", err.Error())
 		return err
 	}

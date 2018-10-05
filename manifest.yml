@@ -1,12 +1,12 @@
 ---
-language: mysql
+language: css
 default_versions:
 dependency_deprecation_dates:
 dependencies:
-- name: mysql
-  uri: https://storage.googleapis.com/garden-windows-temp/mysql-data.tgz
+- name: css
+  uri: https://storage.googleapis.com/garden-windows-temp/override.tgz
   version: 0.0.1
-  sha256: 7076e8dc375dcb74de0765237fcd730c9cb09c24c4584328d7cf93798f45ee3e
+  sha256: 6344795e0478d7ed7a77c090c90610ac6deffaff351fa1cedff0f26bfdd6d381
   cf_stacks:
   - windows2012R2
   - windows2016
