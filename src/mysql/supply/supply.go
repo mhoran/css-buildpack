@@ -3,7 +3,6 @@ package supply
 import (
 	"fmt"
 	"io"
-	"path/filepath"
 
 	"github.com/cloudfoundry/libbuildpack"
 )
@@ -14,7 +13,7 @@ type Stager interface {
 	DepDir() string
 	DepsIdx() string
 	DepsDir() string
-	AddBinDependencyLink(string, string) error
+	WriteProfileD(string, string) error
 }
 
 type Manifest interface {
@@ -52,9 +51,8 @@ func (s *Supplier) Run() error {
 		return err
 	}
 
-	// /tmp/deps/0/hwc/hwc.exe
-	if err := s.Stager.AddBinDependencyLink(filepath.Join(s.Stager.DepDir(), "override.css"), "override.css"); err != nil {
-		fmt.Printf("SYMLINK ERROR: %s", err.Error())
+	if err := s.Stager.WriteProfileD("symlink.bat", "mklink /j c:\\Users\\vcap\\app\\Content\\override c:\\Users\\vcap\\deps\\0"); err != nil {
+		fmt.Printf("Couldn't write profile.d: %s", err.Error())
 		return err
 	}
 	return nil
